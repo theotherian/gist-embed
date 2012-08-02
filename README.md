@@ -12,7 +12,7 @@
 
     <script type="text/javascript" src="gist-embed.js"></script>
 
-### Add a <code/> element to your page with an id attribute in the following format:
+### Add a code element to your page with an id attribute in the following format:
 
     "gist-<gist-id>"
 	e.g.:
