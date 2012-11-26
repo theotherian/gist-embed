@@ -1,9 +1,5 @@
 ##How to use gist-embed to spice up code snippets on your blog
 
-### Include the gist css:
-
-    <link rel="stylesheet" href="https://gist.github.com/stylesheets/gist/embed.css">
-
 ### Include jQuery:
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
@@ -17,3 +13,4 @@
     "gist-<gist-id>"
 	e.g.:
     <code id="gist-1741"></code>
+    <code id="gist-4147951" data-file="file1.txt"></code>
