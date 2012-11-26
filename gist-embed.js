@@ -3,8 +3,8 @@
 $(function(){
   var gistMarkerId = 'gist-';
 
-  //find all code elements
-  $('code').each(function(){
+  //find all code elements containing "gist-" the id attribute.
+  $('code[id*="'+gistMarkerId+'"]').each(function(){
     var $elem, id, url, file;
     $elem = $(this);
 
@@ -38,7 +38,6 @@ $(function(){
               var css=/embed.css/;
               var style=false;
               $('link').each(function(){
-                console.info( css.test($(this).attr('href'))==true );
                 if(css.test($(this).attr('href')) == true){
                   style=true;
                 }
