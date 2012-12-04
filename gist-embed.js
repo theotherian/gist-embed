@@ -38,11 +38,11 @@ $(function(){
               var css=/embed.css/;
               var style=false;
               $('link').each(function(){
-                if(css.test($(this).attr('href')) == true){
+                if(css.test($(this).attr('href'))){
                   style=true;
                 }
               });
-              if(style==false){
+              if(!style){
                 var l = document.createElement("link");
                 l.type = "text/css";
                 l.rel = "stylesheet";
