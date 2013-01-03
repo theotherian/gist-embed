@@ -5,11 +5,19 @@ $(function(){
 
   //find all code elements containing "gist-" the id attribute.
   $('code[id*="'+gistMarkerId+'"]').each(function(){
-    var $elem, id, url, file;
-    $elem = $(this);
+    var $elem = $(this),
+      id,
+      url,
+      file,
+      data = {};
 
     id = $elem.attr('id') || '';
-    file = $elem.attr('data-file') ? '?file='+$elem.attr('data-file') : '';
+    file = $elem.attr('data-file');
+    
+    if(file){
+      data.file = file;
+    }
+
     //if the id doesn't begin with 'gist-', then ignore the code block
     if (!id || id.indexOf('gist-') !== 0) return false;
 
@@ -22,12 +30,12 @@ $(function(){
     //make sure result is a numeric id
     if(!isNaN(parseInt(id, 10))){
       url = 'https://gist.github.com/' + id + '.json';
-      url += file;
       //loading
-      $elem.html('Loading gist ' + url + ' ...');
+      $elem.html('Loading gist ' + url + (data.file ? ', file: ' + data.file : '') + '...');
       //request the json version of this gist
       $.ajax({
         url: url,
+        data: data,
         dataType: 'jsonp',
         timeout: 10000,
         success: function(response){
