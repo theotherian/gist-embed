@@ -34,11 +34,13 @@ $(function(){
           //the html payload is in the div property
           if(response && response.div){
             //add the html to your element holder
-            if(response.stylesheet){
-              var css=/embed.css/;
+            var embedCss = response.stylesheet;
+           if(embedCss){
+              var css=embedCss;
               var style=false;
               $('link').each(function(){
-                if(css.test($(this).attr('href')) == true){
+                //console.info( css.test($(this).attr('href'))==true );
+                if($(this).attr('href') == embedCss){
                   style=true;
                 }
               });
@@ -46,7 +48,7 @@ $(function(){
                 var l = document.createElement("link");
                 l.type = "text/css";
                 l.rel = "stylesheet";
-                l.href = response.stylesheet;
+                l.href = embedCss;
                 var head = document.getElementsByTagName("head")[0];
                 head.insertBefore(l, head.firstChild);
               }
