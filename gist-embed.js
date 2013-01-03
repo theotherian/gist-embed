@@ -9,7 +9,7 @@ $(function(){
     $elem = $(this);
 
     id = $elem.attr('id') || '';
-    file = '?file='+$elem.attr('data-file') || '';
+    file = $elem.attr('data-file') ? '?file='+$elem.attr('data-file') : '';
     //if the id doesn't begin with 'gist-', then ignore the code block
     if (!id || id.indexOf('gist-') !== 0) return false;
 
@@ -26,31 +26,24 @@ $(function(){
       //loading
       $elem.html('Loading gist ' + url + ' ...');
       //request the json version of this gist
-      $.ajax({ 
-        url: url, 
-        dataType: 'jsonp', 
+      $.ajax({
+        url: url,
+        dataType: 'jsonp',
         timeout: 10000,
         success: function(response){
           //the html payload is in the div property
           if(response && response.div){
-            //add the html to your element holder
-            if(response.stylesheet){
-              var css=/embed.css/;
-              var style=false;
-              $('link').each(function(){
-                if(css.test($(this).attr('href'))){
-                  style=true;
-                }
-              });
-              if(!style){
-                var l = document.createElement("link");
-                l.type = "text/css";
-                l.rel = "stylesheet";
-                l.href = response.stylesheet;
-                var head = document.getElementsByTagName("head")[0];
-                head.insertBefore(l, head.firstChild);
-              }
+            //add the stylesheet if it does not exist
+            if(response.stylesheet && $('link[href="' + response.stylesheet + '"]').length === 0){
+              var l = document.createElement("link"),
+                head = document.getElementsByTagName("head")[0];
+
+              l.type = "text/css";
+              l.rel = "stylesheet";
+              l.href = response.stylesheet;
+              head.insertBefore(l, head.firstChild);
             }
+            //add the html to your element holder
             $elem.html(response.div);
           }else{
             $elem.html('Failed loading gist ' + url);
@@ -59,7 +52,7 @@ $(function(){
         error: function(){
           $elem.html('Failed loading gist ' + url);
         }
-      }); 
+      });
     }else{
       $elem.html('Failed loading gist with incorrect id format: ' + $elem.attr('id'));
     }
