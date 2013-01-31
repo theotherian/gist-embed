@@ -56,10 +56,12 @@ $(function(){
             }
             if(line){
               lineCode = $(response.div).filter('#file-' + splittedFileName + '-LC' + line);
-              $(response.div).remove('.line-numbers');
-              $(response.div).empty('.line-pre');
-              $(response.div).$('.line-pre').append(lineCode);
-              $elem.html(response.div);
+              basicStructureWithSingleLine = '<div id="gist' + id + '" class="gist"><div class="gist-file">' +
+                                             '<div class="gist-data gist-syntax"><div class="file-data">' +
+                                             '<table cellpadding="0" cellspacing="0" class="lines highlight">' +
+                                             '<tbody><tr><td class="line-data"><pre class="line-pre">' + lineCode + '</pre>' +
+                                             '</td></tr></tbody></table></div></div></div></div>';
+              $elem.html(basicStructureWithSingleLine);
             }
             else{
               $elem.html(response.div);
