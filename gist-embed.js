@@ -56,6 +56,9 @@ $(function(){
             }
             if(line){
               lineCode = $(response.div).filter('#file-' + splittedFileName + '-LC' + line);
+              $(response.div).remove('.line-numbers');
+              $(response.div).empty('.line-pre');
+              $(response.div).$('.line-pre').append(lineCode);
               $elem.html(response.div);
             }
             else{
