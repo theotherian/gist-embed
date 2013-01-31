@@ -55,13 +55,11 @@ $(function(){
               head.insertBefore(l, head.firstChild);
             }
             if(line){
-              div = $('<div>');
-              div.append($(response.div).filter('#file-' + splittedFileName + '-LC' + line))
-              lineCode = $(div).html;
+              lineCode = $(response.div).filter('#file-' + splittedFileName + '-LC' + line);
               basicStructureWithSingleLine = '<div id="gist' + id + '" class="gist"><div class="gist-file">' +
                                              '<div class="gist-data gist-syntax"><div class="file-data">' +
                                              '<table cellpadding="0" cellspacing="0" class="lines highlight">' +
-                                             '<tbody><tr><td class="line-data"><pre class="line-pre">' + lineCode + '</pre>' +
+                                             '<tbody><tr><td class="line-data"><pre class="line-pre">' + lineCode.innerHTML + '</pre>' +
                                              '</td></tr></tbody></table></div></div></div></div>';
               $elem.html(basicStructureWithSingleLine);
             }
