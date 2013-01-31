@@ -66,8 +66,7 @@ $(function(){
                 $elem.html(basicStructureWithSingleLine);
               }
               else{
-                $(response.div).html("Invalid line number specified.")
-                $elem.html(response.div);
+                $elem.html($(response.div).html("Invalid line number specified."));
               }
             }
             else{
