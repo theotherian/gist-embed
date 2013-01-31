@@ -55,7 +55,9 @@ $(function(){
               head.insertBefore(l, head.firstChild);
             }
             if(line){
-              lineCode = $('<div>').append($(response.div).filter('#file-' + splittedFileName + '-LC' + line)).html();
+              div = $('<div>');
+              div.append($(response.div).filter('#file-' + splittedFileName + '-LC' + line))
+              lineCode = $(div).html;
               basicStructureWithSingleLine = '<div id="gist' + id + '" class="gist"><div class="gist-file">' +
                                              '<div class="gist-data gist-syntax"><div class="file-data">' +
                                              '<table cellpadding="0" cellspacing="0" class="lines highlight">' +
