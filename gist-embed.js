@@ -55,7 +55,7 @@ $(function(){
               head.insertBefore(l, head.firstChild);
             }
             if(line){
-              lineCode = response.div.html().filter('#file-' + splittedFileName + '-LC' + line);
+              lineCode = $('#' + response.div.id).html().filter('#file-' + splittedFileName + '-LC' + line);
               $elem.html(response.div);
             }
             else{
