@@ -55,19 +55,16 @@ $(function(){
               head.insertBefore(l, head.firstChild);
             }
             if(line){
-              if($(response.div).find('#file-' + splittedFileName + '-LC' + line)[0]){
-                lineCode = $(response.div).find('#file-' + splittedFileName + '-LC' + line)[0].innerHTML;
-                basicStructureWithSingleLine = '<div id="gist' + id + '" class="gist"><div class="gist-file">' +
-                                               '<div class="gist-data gist-syntax"><div class="file-data">' +
-                                               '<table cellpadding="0" cellspacing="0" class="lines highlight">' +
-                                               '<tbody><tr><td class="line-data"><pre class="line-pre">' +
-                                               '<div class="line" id="file-' + splittedFileName + '-LC' + line + '">' +
-                                               lineCode + '</div></pre></td></tr></tbody></table></div></div></div></div>';
-                $elem.html(basicStructureWithSingleLine);
+              var lineNumbers = getLineNumbers(line);
+              var lineCodes = new Array(lineNumbers.length);
+
+              for(var i = 0; i < lineNumbers.length; i++){
+                if($(response.div).find('#file-' + splittedFileName + '-LC' + lineNumbers[i])[0]){
+                  lineCodes[i] = $(response.div).find('#file-' + splittedFileName + '-LC' + lineNumbers[i])[0].innerHTML;
+                }
               }
-              else{
-                $elem.html($(response.div).html("Invalid line number specified."));
-              }
+              html = basicStructureForMultipleLines(id, lineCodes, splittedFileName);
+              $elem.html(html);
             }
             else{
               $elem.html(response.div);
@@ -85,3 +82,33 @@ $(function(){
     }
   });
 });
+
+function getLineNumbers(lineRangeString){
+  var lineNumbers = new Array();
+  var lineNumberSections = lineRangeString.split(',');
+  for(var k = 0; k < lineNumberSections.length; k++){
+    var range = lineNumberSections[k].split('-');
+    if(range.length == 2){
+      for(var i = range[0]; i <= range[1]; i++){
+        lineNumbers.push(i);
+      }
+    }
+    else if(range.length == 1){
+      lineNumbers.push(range[0]);
+    }
+  }
+  return lineNumbers;
+}
+
+function basicStructureForMultipleLines(gistId, lineCodes, splittedFileName){
+  html = '<div id="gist' + gistId + '" class="gist"><div class="gist-file">' +
+         '<div class="gist-data gist-syntax"><div class="file-data">' +
+         '<table cellpadding="0" cellspacing="0" class="lines highlight">' +
+         '<tbody><tr><td class="line-data"><pre class="line-pre">';
+  for(var i = 0; i < lineCodes.length; i++){
+    html += '<div class="line" id="file-' + splittedFileName + '-LC' + (i + 1) + '">' +
+    lineCodes[i] + '</div>';
+  }
+  html += '</pre></td></tr></tbody></table></div></div></div></div>';
+  return html;
+}
