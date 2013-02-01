@@ -58,15 +58,14 @@ $(function(){
               var lineNumbers = getLineNumbers(line);
               var lineCodes = new Array(lineNumbers.length);
 
-              for(var i = 0; i < lineNumbers.length; i++){
-                if($(response.div).find('#file-' + splittedFileName + '-LC' + lineNumbers[i])[0]){
-                  lineCodes[i] = $(response.div).find('#file-' + splittedFileName + '-LC' + lineNumbers[i])[0].innerHTML;
-                }
-              }
-              html = basicStructureForMultipleLines(id, lineCodes, splittedFileName);
-              $elem.html(html);
-            }
-            else{
+              $(response.div).find('.line').each(function(index){
+                if(!($.inArray(index + 1, lineNumbers))) $(this).hide();
+              });
+
+              $(response.div).find('.line-number').each(function(index){
+                if(!($.inArray(index + 1, lineNumbers))) $(this).hide();
+              });
+              console.log(response.div);
               $elem.html(response.div);
             }
           }else{
@@ -100,7 +99,7 @@ function getLineNumbers(lineRangeString){
   return lineNumbers;
 }
 
-function basicStructureForMultipleLines(gistId, lineCodes, splittedFileName){
+function extractLines(gistId, lineCodes, splittedFileName){
   html = '<div id="gist' + gistId + '" class="gist"><div class="gist-file">' +
          '<div class="gist-data gist-syntax"><div class="file-data">' +
          '<table cellpadding="0" cellspacing="0" class="lines highlight">' +
