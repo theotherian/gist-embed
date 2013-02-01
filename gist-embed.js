@@ -56,7 +56,7 @@ $(function(){
             }
             if(line){
               var lineNumbers = getLineNumbers(line);
-              var lineCodes = new Array(lineNumbers.length);
+              console.log(lineNumbers);
 
               $(response.div).find('.line').each(function(index){
                 if(!($.inArray(index + 1, lineNumbers))) $(this).hide();
