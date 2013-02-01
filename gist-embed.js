@@ -87,7 +87,7 @@ function getLineNumbers(lineRangeString){
   var lineNumberSections = lineRangeString.split(',');
   $(lineNumberSections).each(function(){
     console.log($(this));
-    var range = $(this).get().split('-');
+    var range = eval("$(this).get()").split('-');
     if(range.length == 2){
       for(var i = range[0]; i <= range[1]; i++){
         lineNumbers.push(i);
