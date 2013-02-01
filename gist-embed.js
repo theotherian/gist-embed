@@ -56,12 +56,12 @@ $(function(){
             }
             if(line){
               var lineNumbers = getLineNumbers(line);
-              console.log(lineNumbers);
               var lineCodes = new Array(lineNumbers.length);
 
               for(var i = 0; i < lineNumbers.length; i++){
                 if($(response.div).find('#file-' + splittedFileName + '-LC' + lineNumbers[i])[0]){
                   lineCodes[i] = $(response.div).find('#file-' + splittedFileName + '-LC' + lineNumbers[i])[0].innerHTML;
+                  console.log(lineCodes[i]);
                 }
               }
               $elem.html(basicStructureForMultipleLines(id, lineCodes, splittedFileName));
