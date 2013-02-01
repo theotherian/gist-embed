@@ -56,6 +56,7 @@ $(function(){
             }
             if(line){
               var lineNumbers = getLineNumbers(line);
+              console.log(lineNumbers);
               var lineCodes = new Array(lineNumbers.length);
 
               for(var i = 0; i < lineNumbers.length; i++){
@@ -87,8 +88,6 @@ function getLineNumbers(lineRangeString){
   var lineNumberSections = lineRangeString.split(',');
   for(var k = 0; k < lineNumberSections.length; k++){
     var range = lineNumberSections[k].split('-');
-    console.log(range);
-    console.log(range.length);
     if(range.length == 2){
       for(var i = range[0]; i <= range[1]; i++){
         lineNumbers.push(i);
