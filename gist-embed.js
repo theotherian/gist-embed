@@ -9,10 +9,13 @@ $(function(){
       id,
       url,
       file,
+      line,
       data = {};
 
     id = $elem.attr('id') || '';
     file = $elem.attr('data-file');
+    line = $elem.attr('data-line');
+    splittedFileName = file.split('.').join('-');
     
     if(file){
       data.file = file;
@@ -51,8 +54,24 @@ $(function(){
               l.href = response.stylesheet;
               head.insertBefore(l, head.firstChild);
             }
-            //add the html to your element holder
-            $elem.html(response.div);
+            if(line){
+              if($(response.div).find('#file-' + splittedFileName + '-LC' + line)[0]){
+                lineCode = $(response.div).find('#file-' + splittedFileName + '-LC' + line)[0].innerHTML;
+                basicStructureWithSingleLine = '<div id="gist' + id + '" class="gist"><div class="gist-file">' +
+                                               '<div class="gist-data gist-syntax"><div class="file-data">' +
+                                               '<table cellpadding="0" cellspacing="0" class="lines highlight">' +
+                                               '<tbody><tr><td class="line-data"><pre class="line-pre">' +
+                                               '<div class="line" id="file-' + splittedFileName + '-LC' + line + '">' +
+                                               lineCode + '</div></pre></td></tr></tbody></table></div></div></div></div>';
+                $elem.html(basicStructureWithSingleLine);
+              }
+              else{
+                $elem.html($(response.div).html("Invalid line number specified."));
+              }
+            }
+            else{
+              $elem.html(response.div);
+            }
           }else{
             $elem.html('Failed loading gist ' + url);
           }
