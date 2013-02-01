@@ -64,7 +64,6 @@ $(function(){
                 }
               }
               html = basicStructureForMultipleLines(id, lineCodes, splittedFileName);
-              console.log(html);
               $elem.html(html);
             }
             else{
@@ -107,7 +106,7 @@ function basicStructureForMultipleLines(gistId, lineCodes, splittedFileName){
          '<table cellpadding="0" cellspacing="0" class="lines highlight">' +
          '<tbody><tr><td class="line-data"><pre class="line-pre">';
   for(var i = 0; i < lineCodes.length; i++){
-    html += '<div class="line" id="file-' + splittedFileName + '-LC1">' +
+    html += '<div class="line" id="file-' + splittedFileName + '-LC' + (i + 1) + '">' +
     lineCodes[i] + '</div>';
   }
   html += '</pre></td></tr></tbody></table></div></div></div></div>';
