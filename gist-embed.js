@@ -86,7 +86,7 @@ function getLineNumbers(lineRangeString){
   var lineNumbers = new Array();
   var lineNumberSections = lineRangeString.split(',');
   for(var k = 0; k < lineNumberSections.length; k++){
-    var range = lineNumberSections.split('-');
+    var range = lineNumberSections[k].split('-');
     console.log(range);
     console.log(range.length);
     if(range.length == 2){
