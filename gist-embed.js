@@ -94,7 +94,7 @@ function getLineNumbers(lineRangeString){
       }
     }
     elseif(range.length == 1){
-      lineNumbers.push(range[0]);
+      #lineNumbers.push(range[0]);
     }
   });
   return lineNumbers;
