@@ -88,6 +88,8 @@ function getLineNumbers(lineRangeString){
   $(lineNumberSections).each(function(){
     console.log($(this));
     var range = eval("'$(this).get()'").split('-');
+    console.log(range);
+    console.log(range.length);
     if(range.length == 2){
       for(var i = range[0]; i <= range[1]; i++){
         lineNumbers.push(i);
