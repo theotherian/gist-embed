@@ -61,10 +61,11 @@ $(function(){
               for(var i = 0; i < lineNumbers.length; i++){
                 if($(response.div).find('#file-' + splittedFileName + '-LC' + lineNumbers[i])[0]){
                   lineCodes[i] = $(response.div).find('#file-' + splittedFileName + '-LC' + lineNumbers[i])[0].innerHTML;
-                  console.log(lineCodes[i]);
                 }
               }
-              $elem.html(basicStructureForMultipleLines(id, lineCodes, splittedFileName));
+              html = basicStructureForMultipleLines(id, lineCodes, splittedFileName);
+              console.log(html);
+              $elem.html(html);
             }
             else{
               $elem.html(response.div);
