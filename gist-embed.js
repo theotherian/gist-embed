@@ -93,7 +93,7 @@ function getLineNumbers(lineRangeString){
         lineNumbers.push(i);
       }
     }
-    elseif(range.length == 1){
+    else if(range.length == 1){
       //lineNumbers.push(range[0]);
     }
   });
