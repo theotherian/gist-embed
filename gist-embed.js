@@ -60,7 +60,7 @@ $(function(){
 
               for(var i = 0; i < lineNumbers.length; i++){
                 if($(response.div).find('#file-' + splittedFileName + '-LC' + lineNumbers[i])[0]){
-                  lineCodes[i] = $(response.div).find('#file-' + splittedFileName + '-LC' + line)[0].innerHTML;
+                  lineCodes[i] = $(response.div).find('#file-' + splittedFileName + '-LC' + lineNumbers[i])[0].innerHTML;
                 }
               }
               $elem.html(basicStructureForMultipleLines(id, lineCodes, splittedFileName));
