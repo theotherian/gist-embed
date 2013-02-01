@@ -68,6 +68,9 @@ $(function(){
               console.log(response.div);
               $elem.html(response.div);
             }
+            else{
+              $elem.html(response.div);
+            }
           }else{
             $elem.html('Failed loading gist ' + url);
           }
