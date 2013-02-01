@@ -59,7 +59,11 @@ $(function(){
               console.log(lineNumbers);
 
               $(response.div).find('.line').each(function(index){
-                if(!($.inArray(index + 1, lineNumbers))) $(this).hide();
+                if(!($.inArray(index + 1, lineNumbers))){
+                  $(this).hide();
+                }
+                console.log(($.inArray(index + 1, lineNumbers));
+                console.log(index);
               });
 
               $(response.div).find('.line-number').each(function(index){
