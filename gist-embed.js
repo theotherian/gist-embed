@@ -111,4 +111,5 @@ function basicStructureForMultipleLines(gistId, lineCodes, splittedFileName){
     lineCodes[i] + '</div>';
   }
   html += '</pre></td></tr></tbody></table></div></div></div></div>';
+  return html;
 }
