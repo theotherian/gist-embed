@@ -85,9 +85,8 @@ $(function(){
 function getLineNumbers(lineRangeString){
   var lineNumbers = new Array();
   var lineNumberSections = lineRangeString.split(',');
-  $(lineNumberSections).each(function(){
-    console.log($(this));
-    var range = "" + $(this).get().split('-');
+  for(var k = 0; k < lineNumberSections.length; k++){
+    var range = lineNumberSections.split('-');
     console.log(range);
     console.log(range.length);
     if(range.length == 2){
@@ -96,9 +95,9 @@ function getLineNumbers(lineRangeString){
       }
     }
     else if(range.length == 1){
-      //lineNumbers.push(range[0]);
+      lineNumbers.push(range[0]);
     }
-  });
+  }
   return lineNumbers;
 }
 
