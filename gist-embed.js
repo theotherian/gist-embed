@@ -63,13 +63,12 @@ $(function(){
                   $(this).hide();
                 }
                 console.log(($.inArray(index + 1, lineNumbers)));
-                console.log(index);
+                console.log(index + 1);
               });
 
               $(response.div).find('.line-number').each(function(index){
                 if(!($.inArray(index + 1, lineNumbers))) $(this).hide();
               });
-              console.log(response.div);
               $elem.html(response.div);
             }
             else{
