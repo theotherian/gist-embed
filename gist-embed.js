@@ -95,12 +95,12 @@ function getLineNumbers(lineRangeString){
   for(var k = 0; k < lineNumberSections.length; k++){
     var range = lineNumberSections[k].split('-');
     if(range.length == 2){
-      for(var i = range[0]; i <= range[1]; i++){
+      for(var i = parseInt(range[0]); i <= range[1]; i++){
         lineNumbers.push(i);
       }
     }
     else if(range.length == 1){
-      lineNumbers.push(range[0]);
+      lineNumbers.push(parseInt(range[0]));
     }
   }
   return lineNumbers;
