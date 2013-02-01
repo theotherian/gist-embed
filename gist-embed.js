@@ -62,7 +62,7 @@ $(function(){
                 if(!($.inArray(index + 1, lineNumbers))){
                   $(this).hide();
                 }
-                console.log(($.inArray(index + 1, lineNumbers));
+                console.log(($.inArray(index + 1, lineNumbers)));
                 console.log(index);
               });
 
