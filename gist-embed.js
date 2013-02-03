@@ -12,13 +12,20 @@ $(function(){
       line,
       data = {};
 
+<<<<<<< Updated upstream
     id = $elem.attr('id') || '';
     file = $elem.attr('data-file');
     line = $elem.attr('data-line');
     splittedFileName = file.split('.').join('-');
+=======
+    id              = $elem.attr('id') || '';
+    file            = $elem.attr('data-file');
+    line            = $elem.attr('data-line');
+>>>>>>> Stashed changes
     
     if(file){
       data.file = file;
+      splittedFileName = file.split('.').join('-');
     }
 
     //if the id doesn't begin with 'gist-', then ignore the code block
