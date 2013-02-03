@@ -15,10 +15,10 @@ $(function(){
     id              = $elem.attr('id') || '';
     file            = $elem.attr('data-file');
     line            = $elem.attr('data-line');
-    splittedFileName = file.split('.').join('-');
     
     if(file){
       data.file = file;
+      splittedFileName = file.split('.').join('-');
     }
 
     //if the id doesn't begin with 'gist-', then ignore the code block
