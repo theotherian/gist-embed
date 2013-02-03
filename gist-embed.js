@@ -69,6 +69,7 @@ $(function(){
             else{
               $elem.html(response.div);
             }
+            $('#' + random).find('.gist-file').css('margin-bottom', '0px');
           }else{
             $elem.html('Failed loading gist ' + url);
           }
