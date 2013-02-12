@@ -12,13 +12,13 @@ $(function(){
       line,
       data = {};
 
-    id = $elem.attr('id') || '';
-    file = $elem.attr('data-file');
-    line = $elem.attr('data-line');
-    splittedFileName = file.split('.').join('-');
+    id              = $elem.attr('id') || '';
+    file            = $elem.attr('data-file');
+    line            = $elem.attr('data-line');
     
     if(file){
       data.file = file;
+      splittedFileName = file.split('.').join('-');
     }
 
     //if the id doesn't begin with 'gist-', then ignore the code block
@@ -54,25 +54,34 @@ $(function(){
               l.href = response.stylesheet;
               head.insertBefore(l, head.firstChild);
             }
+
+            var random = Math.floor(Math.random() * 100000);
+            $elem.html("<div id='" + random + "'>" + response.div + "</div>");
+
             if(line){
               var lineNumbers = getLineNumbers(line);
-              console.log(lineNumbers);
-
-              $(response.div).find('.line').each(function(index){
-                if(!($.inArray(index + 1, lineNumbers))){
-                  $(this).hide();
+              $('#' + random).find('.line').each(function(index){
+                if(($.inArray(index + 1, lineNumbers)) == -1){
+                  $(this).remove();
                 }
-                console.log(($.inArray(index + 1, lineNumbers)));
-                console.log(index + 1);
               });
 
-              $(response.div).find('.line-number').each(function(index){
-                if(!($.inArray(index + 1, lineNumbers))) $(this).hide();
+              lineNumber = 1;
+              $('#' + random).find('.line-number').each(function(index){
+                if(($.inArray(index + 1, lineNumbers)) == -1){
+                  $(this).remove();
+                }
+                else{
+                  $(this).html(lineNumber++);
+                }
               });
-              $elem.html(response.div);
             }
-            else{
-              $elem.html(response.div);
+            if($elem.attr('data-showFooter') && $elem.attr('data-showFooter') == "false"){
+              $('#' + random).find('.gist-meta').remove();
+            }
+
+            if($elem.attr('data-showLineNumbers') && $elem.attr('data-showLineNumbers') == "false"){
+              $('#' + random).find('.line-numbers').remove();
             }
           }else{
             $elem.html('Failed loading gist ' + url);
@@ -103,17 +112,4 @@ function getLineNumbers(lineRangeString){
     }
   }
   return lineNumbers;
-}
-
-function extractLines(gistId, lineCodes, splittedFileName){
-  html = '<div id="gist' + gistId + '" class="gist"><div class="gist-file">' +
-         '<div class="gist-data gist-syntax"><div class="file-data">' +
-         '<table cellpadding="0" cellspacing="0" class="lines highlight">' +
-         '<tbody><tr><td class="line-data"><pre class="line-pre">';
-  for(var i = 0; i < lineCodes.length; i++){
-    html += '<div class="line" id="file-' + splittedFileName + '-LC' + (i + 1) + '">' +
-    lineCodes[i] + '</div>';
-  }
-  html += '</pre></td></tr></tbody></table></div></div></div></div>';
-  return html;
 }
