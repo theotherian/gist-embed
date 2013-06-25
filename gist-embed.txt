@@ -60,7 +60,6 @@ $(function(){
 
             if(line){
               var lineNumbers = getLineNumbers(line);
-
               $('#' + random).find('.line').each(function(index){
                 if(($.inArray(index + 1, lineNumbers)) == -1){
                   $(this).remove();
