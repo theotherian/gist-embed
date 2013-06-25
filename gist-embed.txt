@@ -83,6 +83,7 @@ $(function(){
             if($elem.attr('data-showLineNumbers') && $elem.attr('data-showLineNumbers') == "false"){
               $('#' + random).find('.line-numbers').remove();
             }
+            $('#' + random).find('.gist-file').css('margin-bottom', '0px');
           }else{
             $elem.html('Failed loading gist ' + url);
           }
