@@ -1,6 +1,6 @@
 //author: Blair Vanderhoof
 //https://github.com/blairvanderhoof/gist-embed
-$(function(){
+jQuery(function($){
   var gistMarkerId = 'gist-';
 
   //find all code elements containing "gist-" the id attribute.
