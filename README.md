@@ -1,5 +1,5 @@
 ## I, theotherian, take no credit for this code; it is cloned from 
-## https://raw.github.com/theotherian/gist-embed/master/gist-embed.js.
+## https://github.com/kashif-umair/gist-embed/
 ## The reason I cloned it was to host a version from my own github account for my blog.
 
 ##How to use gist-embed to spice up code snippets on your blog
